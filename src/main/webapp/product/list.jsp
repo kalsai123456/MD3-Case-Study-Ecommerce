@@ -10,13 +10,10 @@
 <html>
 <head>
     <title>Dương</title>
-    <title>Dương</title>    <title>Dương</title>    <title>Dương</title>    <title>Dương</title>    <title>Dương</title>    <title>Dương</title>
+
 </head>
 <body>
 <h2> search flick</h2>
-<h2> search flick</h2>
-<h2> search flick</h2>
-<h2> search flick</h2>
-<h3> conflick</h3>
+
 </body>
 </html>

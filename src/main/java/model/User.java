@@ -3,21 +3,18 @@ package model;
 public class User {
     private int idUser;
     private String name;
-    private String address;
     private String userName;
     private String password;
-    private boolean role;
 
     public User() {
     }
 
-    public User(int idUser, String name, String address, String userName, String password, boolean role) {
+    public User(int idUser, String name, String userName, String password ) {
         this.idUser = idUser;
         this.name = name;
-        this.address = address;
         this.userName = userName;
         this.password = password;
-        this.role = role;
+
     }
 
     public int getIdUser() {
@@ -36,13 +33,6 @@ public class User {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getUserName() {
         return userName;
@@ -60,23 +50,13 @@ public class User {
         this.password = password;
     }
 
-    public boolean isRole() {
-        return role;
-    }
-
-    public void setRole(boolean role) {
-        this.role = role;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "idUser=" + idUser +
                 ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
                 '}';
     }
 }

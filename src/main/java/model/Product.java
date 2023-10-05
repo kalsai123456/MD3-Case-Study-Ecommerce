@@ -7,17 +7,19 @@ public class Product {
     private double price;
     private Category category;
     private String img;
+    private String description;
 
     public Product() {
     }
 
-    public Product(int idProduct, String name, int quantity, double price, Category category, String img) {
+    public Product(int idProduct, String name, int quantity, double price, Category category, String img, String description) {
         this.idProduct = idProduct;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
         this.category = category;
         this.img = img;
+        this.description = description;
     }
 
     public int getIdProduct() {
@@ -68,6 +70,14 @@ public class Product {
         this.img = img;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -77,6 +87,7 @@ public class Product {
                 ", price=" + price +
                 ", category=" + category +
                 ", img='" + img + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
