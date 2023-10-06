@@ -38,7 +38,7 @@ public class UserServlet extends HttpServlet {
                     break;
                 } else {
                     RequestDispatcher requestDispatcher = req.getRequestDispatcher("user/login.jsp");
-                    req.setAttribute("mes", "Tai khoan sai");
+                    req.setAttribute("mes", "Sai ten dang nhap hoac mat khau");
                     requestDispatcher.forward(req, resp);
                 }
                 }
