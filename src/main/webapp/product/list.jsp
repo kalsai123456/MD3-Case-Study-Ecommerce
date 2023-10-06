@@ -9,11 +9,56 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Dương</title>
-
+    <title>PRODUCTS</title>
 </head>
-<body>
-<h2> search flick</h2>
+<style>
+    table, tr, td {
+        border-collapse: collapse;
+        border: black solid 1px;
+    }
 
+    td {
+        text-align: center;
+        width: 200px;
+    }
+</style>
+<body>
+<h2>All Products</h2>
+<h3>
+    <a href="/products?action=create">Create new product</a>
+</h3>
+<h3></h3>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Description</td>
+        <td>Category</td>
+        <td>Image</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <c:forEach items="${products}" var="p">
+        <tr>
+            <td>${p.idProduct}</td>
+            <td>${p.name}</td>
+            <td>${p.price}</td>
+            <td>${p.quantity}</td>
+            <td>${p.description}</td>
+            <td>${p.category.name}</td>
+            <td>
+                <img src="${p.img}" alt="img product">
+            </td>
+            <td>
+                <a href="">Edit</a>
+            </td>
+            <td>
+                <a href="">Delete</a>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

@@ -3,7 +3,7 @@ package service;
 import java.sql.Connection;
 import java.util.List;
 
-public interface GeneralService <T>{
+public interface GeneralService <T> {
     Connection getConnection();
     List<T> findAll();
     T findById(int id);

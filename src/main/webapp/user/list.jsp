@@ -1,36 +1,42 @@
 <%--
   Created by IntelliJ IDEA.
-  User: FPTSHOP
-  Date: 10/6/2023
-  Time: 8:46 AM
+  User: Admin
+  Date: 06/10/2023
+  Time: 11:44 SA
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-<%--
-  Created by IntelliJ IDEA.
-  User: FPTSHOP
-  Date: 10/5/2023
-  Time: 10:00 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-<c:forEach var="user" items="${dsUS}">
-    <h2>${user.idUser}, ${user.name}, ${user.userName}</h2>
-</c:forEach>
+<div align="center">
+    <table border="1" cellpadding="5">
+        <caption><h2>List of Users</h2></caption>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+        <c:forEach var="user" items="${listUser}">
+            <tr>
+                <td><c:out value="${user.id}"/></td>
+                <td><c:out value="${user.name}"/></td>
+                <td><c:out value="${user.userName}"/></td>
+                <td><c:out value="${user.password}"/></td>
+                <td>
+                    <a href="/users?action=edit&id=${user.id}">Edit</a>
+                    <a href="/users?action=delete&id=${user.id}">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </html>
-
-</body>
-</html>
+>>>>>>> 8ce9b2853d14cd6eef503f772ea7710e2e3c40b2
