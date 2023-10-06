@@ -6,8 +6,7 @@ import model.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService{
     CategoryService categoryService = new CategoryServiceImpl();
     public ProductServiceImpl() {
     }
@@ -65,20 +64,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void save(Product product) {
-        try {
-            Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into product(name, quantity, price, img, description, idCategory) values (?, ?, ?, ?, ?, ?)");
-            System.out.println(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setInt(2, product.getQuantity());
-            preparedStatement.setDouble(3, product.getPrice());
-            preparedStatement.setString(4, product.getImg());
-            preparedStatement.setString(5, product.getDescription());
-            preparedStatement.setInt(6, product.getCategory().getIdCategory());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @Override

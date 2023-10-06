@@ -6,8 +6,7 @@ import model.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CategoryService{
     public CategoryServiceImpl() {
     }
     public Connection getConnection() {
@@ -60,9 +59,44 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findByName(String name) {
-        return null;
-    }
+        List<Category> categories = new ArrayList<>();
+        try{
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from category where name like ?");
+            preparedStatement.setString(1,"%" + name + "%");
+            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
 
+            while (rs.next()) {
+                int idCategory = rs.getInt("idCategory");
+                String name1 = rs.getString("name");
+                categories.add(new Category(idCategory, name1));
+            }
+        }
+        catch (SQLException e){
+                e.printStackTrace(System.err);
+        }
+        return categories;
+    }
+    public Category findName(String name){
+        Category category = null;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from category where name = ?");
+            preparedStatement.setString(1, name);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idCategory = rs.getInt("idCategory");
+                String name1 = rs.getString("name");
+                category = new Category(idCategory, name1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+        return category;
+    }
     @Override
     public void update(Category category) {
 
@@ -75,6 +109,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void delete(Category category) {
-
+        System.out.println("1");
     }
 }
