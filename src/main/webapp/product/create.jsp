@@ -16,7 +16,7 @@
     <title>Title</title>
 </head>
 <body>
-<form class="needs-validation" novalidate>
+<form method="post" class="needs-validation" novalidate>
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label>Name of product:</label>

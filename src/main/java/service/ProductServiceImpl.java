@@ -69,13 +69,14 @@ public class ProductServiceImpl implements ProductService{
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("insert into product(name, quantity, price, img, description, idCategory) values (?, ?, ?, ?, ?, ?)");
             System.out.println(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
             preparedStatement.setString(1, product.getName());
             preparedStatement.setInt(2, product.getQuantity());
             preparedStatement.setDouble(3, product.getPrice());
             preparedStatement.setString(4, product.getImg());
             preparedStatement.setString(5, product.getDescription());
             preparedStatement.setInt(6, product.getCategory().getIdCategory());
+            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

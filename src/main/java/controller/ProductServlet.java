@@ -55,20 +55,20 @@ public class ProductServlet extends HttpServlet {
         switch (action) {
             case "create":
                 createProduct(request, response);
-
+                break;
         }
     }
 
     private void createProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        int idProduct = Integer.parseInt(request.getParameter("idProduct"));
         String name = request.getParameter("name");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
         String img = request.getParameter("img");
         String description = request.getParameter("description");
-        String nameCategory = request.getParameter("category");
+        String nameCategory = request.getParameter("nameCategory");
         Category category = categoryService.findName(nameCategory);
         Product product = new Product(1, name, quantity, price, category, img, description);
+        System.out.println(product);
         productService.save(product);
         response.sendRedirect("/products");
     }

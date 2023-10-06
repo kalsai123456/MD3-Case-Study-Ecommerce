@@ -21,6 +21,10 @@
         text-align: center;
         width: 200px;
     }
+    tr img {
+        width: 100px;
+        height: 100px;
+    }
 </style>
 <body>
 <h2>All Products</h2>
@@ -49,13 +53,13 @@
             <td>${p.description}</td>
             <td>${p.category.name}</td>
             <td>
-                <img src="${p.img}" alt="img product">
+                <img src="${p.getImg()}" alt="img product">
             </td>
             <td>
-                <a href="">Edit</a>
+                <a href="/products?action=edit&id=${p.idProduct}&">Edit</a>
             </td>
             <td>
-                <a href="">Delete</a>
+                <a href="/products?action=delete&id=${p.idProduct}&">Delete</a>
             </td>
         </tr>
     </c:forEach>
