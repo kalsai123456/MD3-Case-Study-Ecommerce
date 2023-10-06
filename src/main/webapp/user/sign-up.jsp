@@ -30,7 +30,7 @@
         <input type="text" name="name">
         <input type="text" name="username">
         <input type="text" name="password">
-        <button>Add</button>
+        <button>Register</button>
     </form>
 </form>
 </body>

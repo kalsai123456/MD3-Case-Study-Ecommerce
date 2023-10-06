@@ -36,7 +36,10 @@ public class UserServlet extends HttpServlet {
                 if(userDAO.checkLogin(username, password)){
                     showHome(req, resp);
                     break;
-
+                } else {
+                    RequestDispatcher requestDispatcher = req.getRequestDispatcher("user/login.jsp");
+                    req.setAttribute("mes", "Tai khoan sai");
+                    requestDispatcher.forward(req, resp);
                 }
                 }
         }
@@ -52,7 +55,7 @@ public class UserServlet extends HttpServlet {
         String password = req.getParameter("password");
         userDAO.add(new User(userid,name,username,password));
         System.out.println(new User(userid,name,username,password));
-//        resp.sendRedirect("/users");
+        resp.sendRedirect("/users?act=login");
     }
 
     @Override
