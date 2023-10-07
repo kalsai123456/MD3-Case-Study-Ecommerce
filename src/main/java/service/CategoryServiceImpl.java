@@ -44,7 +44,6 @@ public class CategoryServiceImpl implements CategoryService{
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from category where idCategory = ?");
             preparedStatement.setInt(1, id);
-            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int idCategory = rs.getInt("idCategory");
@@ -64,10 +63,7 @@ public class CategoryServiceImpl implements CategoryService{
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from category where name like ?");
             preparedStatement.setString(1,"%" + name + "%");
-            preparedStatement.executeUpdate();
-            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 int idCategory = rs.getInt("idCategory");
                 String name1 = rs.getString("name");
@@ -99,12 +95,27 @@ public class CategoryServiceImpl implements CategoryService{
     }
     @Override
     public void update(Category category) {
-
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("update category set name = ? where idCategory = ?");
+            preparedStatement.setString(1,category.getName());
+            preparedStatement.setInt(2,category.getIdCategory());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void save(Category category) {
-
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into category(name) values (?)");
+            preparedStatement.setString(1, category.getName());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

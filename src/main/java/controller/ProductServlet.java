@@ -67,8 +67,10 @@ public class ProductServlet extends HttpServlet {
 
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("product/list.jsp");
+        List<Category> categories = categoryService.findAll();
         List<Product> products = productService.findAll();
         request.setAttribute("products", products);
+        request.setAttribute("categories", categories);
         dispatcher.forward(request, response);
     }
 
@@ -87,9 +89,26 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 deleteProduct(request, response);
                 break;
+            case "showByCategory":
+                showByCategory(request, response);
+                break;
         }
     }
 
+    private void showByCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
+        int idCategory = Integer.parseInt(request.getParameter("idCategory"));
+        List<Product> products;
+        if (idCategory == 0) {
+            products = productService.findAll();
+        } else {
+            products = productService.findByIdCategory(idCategory);
+        }
+        List<Category> categories = categoryService.findAll();
+        request.setAttribute("categories", categories);
+        request.setAttribute("products", products);
+        requestDispatcher.forward(request, response);
+    }
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int idProduct = Integer.parseInt(request.getParameter("idProduct"));
         Product product = productService.findById(idProduct);

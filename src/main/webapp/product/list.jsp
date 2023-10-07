@@ -14,6 +14,7 @@
         text-align: center;
         width: 200px;
     }
+
     tr img {
         width: 100px;
         height: 100px;
@@ -27,6 +28,21 @@
         <input type="hidden" name="action" value="findByName">
         <input type="text" name="nameSearch">
         <input type="submit" value="Search">
+    </form>
+    <form action="/products" id="show" method="post">
+        <input type="hidden" name="action" value="showByCategory">
+        <input type="submit" value="SUBMIT">
+        <div class="col-md-6 mb-3">
+            <label>Category</label>
+            <select name="idCategory">
+                <option value="0">All</option>
+                <c:forEach items="${categories}" var="category">
+                        <option value="${category.idCategory}" onclick="displayProduct()">
+                                ${category.name}
+                        </option>
+                </c:forEach>
+            </select>
+        </div>
     </form>
 </h3>
 <c:if test="${mes!= null}">
@@ -72,8 +88,11 @@
 <script>
     function confirmDelete(id) {
         if (confirm("Are you sure?")) {
-            document.getElementById("delete"+id).submit();
+            document.getElementById("delete" + id).submit();
         }
+    }
+    function displayProduct() {
+        document.getElementById("show").submit();
     }
 </script>
 </html>

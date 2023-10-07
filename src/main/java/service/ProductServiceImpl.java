@@ -139,6 +139,33 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<Product> findByIdCategory(int idCategory) {
+        List<Product> products = new ArrayList<>();
+        try{
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from product where idCategory = ?");
+            preparedStatement.setInt(1,idCategory);
+//            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idProduct = rs.getInt("idProduct");
+                String name = rs.getString("name");
+                int quantity = rs.getInt("quantity");
+                double price = rs.getDouble("price");
+                String img = rs.getString("img");
+                String description = rs.getString("description");
+                int idCategory1 = rs.getInt("idCategory");
+                Category category = categoryService.findById(idCategory);
+                products.add(new Product(idProduct, name, quantity, price, category, img, description));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace(System.err);
+        }
+        return products;
+    }
+
+    @Override
     public void delete(Product product) {
         try {
             Connection connection = getConnection();
