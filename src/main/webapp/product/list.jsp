@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 10/4/2023
-  Time: 4:29 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -30,8 +23,15 @@
 <h2>All Products</h2>
 <h3>
     <a href="/products?action=create">Create new product</a>
+    <form action="/products" method="get" style="display: inline">
+        <input type="hidden" name="action" value="findByName">
+        <input type="text" name="nameSearch">
+        <input type="submit" value="Search">
+    </form>
 </h3>
-<h3></h3>
+<c:if test="${mes!= null}">
+    <span>${mes}</span>
+</c:if>
 <table>
     <tr>
         <td>ID</td>
@@ -56,13 +56,24 @@
                 <img src="${p.getImg()}" alt="img product">
             </td>
             <td>
-                <a href="/products?action=edit&id=${p.idProduct}&">Edit</a>
+                <a href="/products?action=edit&id=${p.idProduct}">Edit</a>
             </td>
             <td>
-                <a href="/products?action=delete&id=${p.idProduct}&">Delete</a>
+                <form action="/products" id="delete${p.idProduct}" method="post" style="display: inline">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="idProduct" value="${p.idProduct}">
+                    <a onclick="confirmDelete(${p.idProduct})">Delete</a>
+                </form>
             </td>
         </tr>
     </c:forEach>
 </table>
 </body>
+<script>
+    function confirmDelete(id) {
+        if (confirm("Are you sure?")) {
+            document.getElementById("delete"+id).submit();
+        }
+    }
+</script>
 </html>
