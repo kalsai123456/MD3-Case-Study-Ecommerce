@@ -22,17 +22,21 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-<form action="http://localhost:8080/users?act=create" method="post">
-    <form method="post">
-        <input type="text" name="iduser">
-        <input type="text" name="name">
-        <input type="text" name="username">
-        <input type="text" name="password">
-        <button>Register</button>
+<div class="register">
+    <h2>Register</h2>
+    <form action="http://localhost:8080/users?act=create" method="post">
+        <form method="post">
+            <input type="text" name="name">
+            <input type="text" name="username">
+            <input type="text" name="password">
+            <button>Register</button>
+        </form>
     </form>
-</form>
+</div>
+
 </body>
 </html>
 

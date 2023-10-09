@@ -49,12 +49,12 @@ public class UserServlet extends HttpServlet {
     }
 
     private void save(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
-        int userid = Integer.parseInt(req.getParameter("iduser"));
+//        int userid = Integer.parseInt(req.getParameter("iduser"));
         String name = req.getParameter("name");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        userDAO.add(new User(userid,name,username,password));
-        System.out.println(new User(userid,name,username,password));
+        userDAO.add(new User(name,username,password));
+        System.out.println(new User(name,username,password));
         resp.sendRedirect("/users?act=login");
     }
 

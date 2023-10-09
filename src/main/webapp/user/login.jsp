@@ -17,8 +17,8 @@
     <h2>User Login</h2>
     <form action="http://localhost:8080/users?act=loginSuccess" method="post">
         <form method="post">
-            <input type="text" placeholder="username">
-            <input type="password" placeholder="password">
+            <input type="text" name="username">
+            <input type="password" name="password">
             <button>Login</button>
             <button><a href=http://localhost:8080/users?act=create>Register</a></button>
         </form>

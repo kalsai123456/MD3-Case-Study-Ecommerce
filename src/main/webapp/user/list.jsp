@@ -26,9 +26,26 @@
 </head>
 <body>
 
-<c:forEach var="user" items="${dsUS}">
-    <h2>${user.idUser}, ${user.name}, ${user.userName}</h2>
-</c:forEach>
+
+<%--    <h2>${user.idUser}, ${user.name}, ${user.userName}</h2>--%>
+    <table border="1">
+        <tr>
+            <th>UserId</th>
+            <th>Name</th>
+            <th>UserName</th>
+            <th>Manage</th>
+
+        </tr>
+        <c:forEach var="user" items="${dsUS}" >
+            <tr>
+                <td>${user.idUser}</td>
+                <td>${user.name}</td>
+                <td>${user.userName}</td>
+               <td> <button>Delete</button></td>
+            </tr>
+        </c:forEach>
+    </table>
+
 </body>
 </html>
 
