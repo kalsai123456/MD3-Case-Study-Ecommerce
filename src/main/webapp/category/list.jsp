@@ -16,7 +16,7 @@
 </style>
 <body>
 <h2>All Categories</h2>
-<a href="/categories?action=create">Create new product</a>
+<a href="/categories?action=create">Create new category</a>
 <form action="/categories" method="get" style="display: inline">
     <input type="hidden" name="action" value="findByName">
     <input type="text" name="nameSearch">

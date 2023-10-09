@@ -6,7 +6,7 @@ import model.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     CategoryService categoryService = new CategoryServiceImpl();
     public ProductServiceImpl() {
     }

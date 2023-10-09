@@ -2,11 +2,12 @@ package service;
 
 import model.Category;
 import model.Product;
+import service.CategoryService;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
     public CategoryServiceImpl() {
     }
     public Connection getConnection() {

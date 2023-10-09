@@ -1,7 +1,6 @@
 package controller;
 
 import model.Category;
-import model.Product;
 import service.CategoryService;
 import service.CategoryServiceImpl;
 import service.ProductService;
