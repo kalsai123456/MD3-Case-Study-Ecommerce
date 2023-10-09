@@ -1,8 +1,7 @@
 package controller;
 
 import model.User;
-import service.IUserDAO;
-import service.UserDAO;
+import service.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +16,8 @@ import java.util.List;
 @WebServlet(name = "UserServlet", urlPatterns ="/users")
 public class UserServlet extends HttpServlet {
     IUserDAO userDAO = new UserDAO();
+    ProductService productService = new ProductServiceImpl();
+    CategoryService categoryService = new CategoryServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,11 +35,11 @@ public class UserServlet extends HttpServlet {
                     String username = req.getParameter("username");
                     String password = req.getParameter("password");
                     if(userDAO.checkLogin(username, password)){
-                        showHome(req, resp);
+                        showHome(username, req, resp);
                         break;
                     } else {
                         RequestDispatcher requestDispatcher = req.getRequestDispatcher("user/login.jsp");
-                        req.setAttribute("mes", "Tai khoan sai");
+                        req.setAttribute("mes", "Sai ten dang nhap hoac mat khau");
                         requestDispatcher.forward(req, resp);
                     }
             }
@@ -49,12 +50,12 @@ public class UserServlet extends HttpServlet {
     }
 
     private void save(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
-        int userid = Integer.parseInt(req.getParameter("iduser"));
+//        int userid = Integer.parseInt(req.getParameter("iduser"));
         String name = req.getParameter("name");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        userDAO.add(new User(userid,name,username,password));
-        System.out.println(new User(userid,name,username,password));
+        userDAO.add(new User(name,username,password));
+        System.out.println(new User(name,username,password));
         resp.sendRedirect("/users?act=login");
     }
 
@@ -74,6 +75,9 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "listUser":
                     showListUser(req, resp);
+                    break;
+                case "delete":
+                    deleteUser(req,resp);
                     break;
 
             }
@@ -98,10 +102,26 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("user/login.jsp");
         requestDispatcher.forward(req, resp);
     }
-    private void showHome(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/home.jsp");
+    private void showHome(String username,HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/product/list.jsp");
+        req.setAttribute("username", username);
+        req.setAttribute("products", productService.findAll());
+        req.setAttribute("categories", categoryService.findAll());
         requestDispatcher.forward(req, resp);
     }
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        userDAO.deleteUser(id);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/list.jsp");
+        List<User> users = userDAO.findAll();
+        request.setAttribute("dsUS", users);
+        requestDispatcher.forward(request, response);
 
-
+    }
 }
+
+
+
+
+
