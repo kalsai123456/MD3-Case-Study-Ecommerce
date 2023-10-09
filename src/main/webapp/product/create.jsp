@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="col-md-6 mb-3">
+        <div class="col-p0hymd-6 mb-3">
             <label>Description of product:</label>
             <input type="text" class="form-control" name="description>
         </div>

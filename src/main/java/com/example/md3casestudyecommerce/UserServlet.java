@@ -1,7 +1,7 @@
 package com.example.md3casestudyecommerce;
 
 import model.User;
-import service.UserServiceImpl;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

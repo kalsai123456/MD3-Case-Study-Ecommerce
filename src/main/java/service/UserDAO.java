@@ -65,6 +65,23 @@ public class UserDAO implements IUserDAO{
     }
 
     @Override
+    public boolean deleteUser(int id) throws SQLException {
+        boolean rowDeleted;
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement("delete from user where iduser = ?");) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
+    }
+
+
+    @Override
+    public void delete(User user) {
+
+    }
+
+
+    @Override
     public boolean update(User user) throws SQLException {
         return false;
     }
@@ -72,19 +89,19 @@ public class UserDAO implements IUserDAO{
     @Override
 
 
-        public boolean checkLogin(String username, String password) {
-            try {Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?");
-                preparedStatement.setString(1, username);
-                preparedStatement.setString(2, password);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                if (resultSet.next()) {
-                    return true;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+    public boolean checkLogin(String username, String password) {
+        try {Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return true;
             }
-            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
+}
 

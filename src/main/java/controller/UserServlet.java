@@ -26,22 +26,22 @@ public class UserServlet extends HttpServlet {
         }
 
         try {
-        switch (action){
-            case "create":
-                save(req, resp);
-                break;
-            case "loginSuccess":
-                String username = req.getParameter("username");
-                String password = req.getParameter("password");
-                if(userDAO.checkLogin(username, password)){
-                    showHome(req, resp);
+            switch (action){
+                case "create":
+                    save(req, resp);
                     break;
-                } else {
-                    RequestDispatcher requestDispatcher = req.getRequestDispatcher("user/login.jsp");
-                    req.setAttribute("mes", "Tai khoan sai");
-                    requestDispatcher.forward(req, resp);
-                }
-                }
+                case "loginSuccess":
+                    String username = req.getParameter("username");
+                    String password = req.getParameter("password");
+                    if(userDAO.checkLogin(username, password)){
+                        showHome(req, resp);
+                        break;
+                    } else {
+                        RequestDispatcher requestDispatcher = req.getRequestDispatcher("user/login.jsp");
+                        req.setAttribute("mes", "Tai khoan sai");
+                        requestDispatcher.forward(req, resp);
+                    }
+            }
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
@@ -65,18 +65,18 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         try {
-        switch (action){
-            case "create":
-                showSignUpForm(req, resp);
-                break;
-            case "login":
-                showLoginForm(req, resp);
-                break;
-           case "listUser":
+            switch (action){
+                case "create":
+                    showSignUpForm(req, resp);
+                    break;
+                case "login":
+                    showLoginForm(req, resp);
+                    break;
+                case "listUser":
                     showListUser(req, resp);
                     break;
 
-        }
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
