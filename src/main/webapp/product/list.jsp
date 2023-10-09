@@ -24,6 +24,9 @@
     }
 </style>
 <body>
+<h1>Xin chào ${username}</h1>
+<a href="/users?act=login">SignOut</a>
+
 <h2>All Products</h2>
 <h3>
     <a href="/products?action=create">Create new product</a>
@@ -32,22 +35,8 @@
         <input type="text" name="nameSearch">
         <input type="submit" value="Search">
     </form>
-    <form action="/products" id="show" method="post">
-        <input type="hidden" name="action" value="showByCategory">
-        <input type="submit" value="SUBMIT">
-        <div class="col-md-6 mb-3">
-            <label>Category</label>
-            <select name="idCategory">
-                <option value="0">All</option>
-                <c:forEach items="${categories}" var="category">
-                        <option value="${category.idCategory}" onclick="displayProduct()">
-                                ${category.name}
-                        </option>
-                </c:forEach>
-            </select>
-        </div>
-    </form>
     <a href="/orders">Cart</a>
+    <a href="/categories">Category</a>
 </h3>
 <c:if test="${mes!= null}">
     <span>${mes}</span>
