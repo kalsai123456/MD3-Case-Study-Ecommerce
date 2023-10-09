@@ -29,9 +29,12 @@
     <h2>Register</h2>
     <form action="http://localhost:8080/users?act=create" method="post">
         <form method="post">
+            <p>Name</p>
             <input type="text" name="name">
+            <p>UserName</p>
             <input type="text" name="username">
-            <input type="text" name="password">
+            <p>Password</p>
+            <input type="password" name="password">
             <button>Register</button>
         </form>
     </form>

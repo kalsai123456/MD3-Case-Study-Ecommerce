@@ -73,8 +73,11 @@ public class UserServlet extends HttpServlet {
                 showLoginForm(req, resp);
                 break;
            case "listUser":
-                    showListUser(req, resp);
-                    break;
+               showListUser(req, resp);
+               break;
+            case "delete":
+                deleteUser(req,resp);
+                break;
 
         }
         } catch (SQLException e) {
@@ -102,6 +105,19 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/home.jsp");
         requestDispatcher.forward(req, resp);
     }
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        userDAO.deleteUser(id);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/list.jsp");
+        List<User> users = userDAO.findAll();
+        request.setAttribute("dsUS", users);
+        requestDispatcher.forward(request, response);
 
-
+    }
 }
+
+
+
+
+

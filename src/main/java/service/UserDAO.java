@@ -65,6 +65,23 @@ public class UserDAO implements IUserDAO{
     }
 
     @Override
+    public boolean deleteUser(int id) throws SQLException {
+        boolean rowDeleted;
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement("delete from user where iduser = ?");) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
+    }
+
+
+    @Override
+    public void delete(User user) {
+
+    }
+
+
+    @Override
     public boolean update(User user) throws SQLException {
         return false;
     }

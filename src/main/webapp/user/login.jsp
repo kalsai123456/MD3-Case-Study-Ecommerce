@@ -17,7 +17,9 @@
     <h2>User Login</h2>
     <form action="http://localhost:8080/users?act=loginSuccess" method="post">
         <form method="post">
+<%--            <p>UserName</p>--%>
             <input type="text" name="username">
+<%--            <p>Password</p>--%>
             <input type="password" name="password">
             <button>Login</button>
             <button><a href=http://localhost:8080/users?act=create>Register</a></button>

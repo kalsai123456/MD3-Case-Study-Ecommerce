@@ -41,7 +41,10 @@
                 <td>${user.idUser}</td>
                 <td>${user.name}</td>
                 <td>${user.userName}</td>
-               <td> <button>Delete</button></td>
+
+
+
+                <td><a href="http://localhost:8080/users?act=delete&id=${user.idUser}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
