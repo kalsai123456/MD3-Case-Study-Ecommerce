@@ -9,20 +9,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="css/login.css">
     <title>Title</title>
 </head>
 <body>
-
-<form action="http://localhost:8080/users?act=loginSuccess" method="post">
-    <form method="post">
-        <input type="text" name="username">
-        <input type="text" name="password">
-        <button>Login</button>
+<div class="login">
+    <h2>User Login</h2>
+    <form action="http://localhost:8080/users?act=loginSuccess" method="post">
+        <form method="post">
+            <%--            <p>UserName</p>--%>
+            <input type="text" name="username">
+            <%--            <p>Password</p>--%>
+            <input type="password" name="password">
+            <button>Login</button>
+            <button><a href=http://localhost:8080/users?act=create>Register</a></button>
+        </form>
     </form>
-</form>
-<c:if test="${mes!= null}">
-    <span>${mes}</span>
-</c:if>
-<a href=http://localhost:8080/users?act=create>Register</a>
+    <p>
+        <c:if test="${mes!= null}">
+            <span>${mes}</span>
+        </c:if>
+    </p>
+</div>
+
+
+
 </body>
 </html>

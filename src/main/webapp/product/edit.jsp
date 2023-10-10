@@ -8,42 +8,45 @@
     <title>Title</title>
 </head>
 <body>
+<div>
+    <input type="hidden" name="idProduct" value="${product.idProduct}">
+</div>
 <form method="post" class="needs-validation" novalidate>
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label>Name of product:</label>
-            <input type="text" class="form-control" name="name">
+            <input type="text" class="form-control" name="name" value="${product.name}">
         </div>
         <div class="col-md-6 mb-3">
             <label>Quantity of product:</label>
-            <input type="number" class="form-control" name="quantity">
+            <input type="number" class="form-control" name="quantity" value="${product.quantity}">
         </div>
     </div>
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label>Price of product:</label>
-            <input type="number" class="form-control" name="price">
+            <input type="number" class="form-control" name="price" value="${product.price}">
         </div>
         <div class="col-md-6 mb-3">
             <label>Url image of product:</label>
-            <input type="text" class="form-control" name="img">
+            <input type="text" class="form-control" name="img" value="${product.img}">
         </div>
     </div>
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label>Description of product:</label>
-            <input type="text" class="form-control" name="description">
+            <input type="text" class="form-control" name="description" value="${product.description}">
         </div>
         <div class="col-md-6 mb-3">
             <label>Category</label>
-            <select class="custom-select" name="nameCategory">
+            <select class="custom-select" name="nameCategory" value="${product.category.idCategory}">
                 <c:forEach items="${categories}" var="category">
                     <option>${category.name}</option>
                 </c:forEach>
             </select>
         </div>
     </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <button class="btn btn-primary" type="submit">Edit</button>
 </form>
 </body>
 </html>
